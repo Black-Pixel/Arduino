@@ -2,9 +2,6 @@
 #include <HMC5883L.h>
 
 HMC5883L compass;
-float x;
-float y;
-float z;
 MagnetometerScaled scaled;
 float strength;
 float strengthInGauss;
