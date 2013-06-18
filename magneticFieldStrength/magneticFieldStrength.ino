@@ -16,7 +16,7 @@ void setup() {
   
   Wire.begin();
   
-  Serial.begin(9600);  // For PC output
+  Serial.begin(9600); // For PC output
   
   compass = HMC5883L(); 
   
@@ -29,7 +29,7 @@ void setup() {
     Serial.println(compass.GetErrorText(error));
 }
 
-float getStrength() {    // Get absolute strength using the euclidean distance function
+float getStrength() { // Get absolute strength using the euclidean distance function
    return sqrt(scaled.XAxis * scaled.XAxis +
                scaled.YAxis * scaled.YAxis +
                scaled.ZAxis * scaled.ZAxis);
@@ -39,14 +39,14 @@ void loop() {
 
   scaled = compass.ReadScaledAxis();   // Retrieve the scaled values from the compass (scaled to the configured scale).
    
-  strength = getStrength(); // Get the highest value of the three (x,y,z)
+  strength = getStrength(); 
   strengthInGauss = strength/230; // Convert to Gauss
                     
   Serial.print("Magnetic Field Strength: "); 
   Serial.print(strengthInGauss);
   Serial.println(" Gauss");
 
-  if (strengthInGauss > threshold) { // The default magnetic field strength when using a scale of 8.1 is between 1.0 and 1.4 here where I live
+  if (strengthInGauss > threshold) { 
     analogWrite(spkr, 150); // Speaker on (has to be a value between 0 and 255)
   }
   else {
